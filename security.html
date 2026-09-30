@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security — Elijah O'Brien</title>
+  <meta name="description" content="The security stack behind every product — what's included and what isn't claimed." />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="index.html" class="brand">Elijah O&#39;Brien</a>
+    <div class="links">
+      <a href="index.html">Home</a>
+      <a href="security.html">Security</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="refund.html">Refund</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+  <div class="glow">
+    <main class="wrap">
+      <h1>Security</h1>
+      <p class="meta">The stack behind every product — and what isn't claimed.</p>
+
+      <div class="note">
+        I build software the way an attacker would try to break it. Every product goes through the same treatment: hardened auth, rate-limited endpoints, real authorization checks, and audit trails.
+      </div>
+
+      <h2>Authentication</h2>
+      <ul>
+        <li><strong>httpOnly cookies</strong> — tokens never readable by JavaScript, so XSS cannot steal them</li>
+        <li><strong>JWT with refresh token rotation</strong> — every refresh invalidates the previous token; stolen tokens die after one use</li>
+        <li><strong>Token blacklist</strong> — revoked sessions stay revoked, forever</li>
+        <li><strong>SameSite=Strict cookies</strong> — CSRF attacks blocked at the browser level</li>
+        <li><strong>2FA (TOTP)</strong> — built-in, works with Google Authenticator, Authy, 1Password</li>
+      </ul>
+
+      <h2>Rate Limiting & Brute-Force Protection</h2>
+      <ul>
+        <li><strong>30–44 rate-limited endpoints</strong> per product — login, 2FA setup, password reset, registration, and sensitive actions</li>
+        <li><strong>django-axes</strong> — locks out attackers by both IP and username after repeated failures</li>
+        <li><strong>Layered limits</strong> — IP + user-based defense prevents distributed attacks</li>
+      </ul>
+
+      <h2>Authorization</h2>
+      <ul>
+        <li><strong>Ownership checks on every request</strong> — users can only touch their own resources</li>
+        <li><strong>Role-based access control</strong> — user / staff / admin / org-owner</li>
+        <li><strong>Multi-tenant isolation</strong> — organization data strictly scoped</li>
+      </ul>
+
+      <h2>Data & Transport</h2>
+      <ul>
+        <li><strong>HSTS</strong> — forces HTTPS in production, browser remembers for 1 year</li>
+        <li><strong>Secure cookies</strong> — only transmitted over HTTPS in production</li>
+        <li><strong>Strong password validator</strong> — custom rules, 8+ chars, complexity checks</li>
+        <li><strong>CSRF protection</strong> — Django's built-in system, hardened</li>
+        <li><strong>XSS filter + nosniff</strong> — security headers on every response</li>
+        <li><strong>CORS locked</strong> — restricted to explicitly allowed origins in production</li>
+      </ul>
+
+      <h2>Audit & Observability</h2>
+      <ul>
+        <li><strong>Audit log</strong> — every sensitive action recorded (logins, password changes, 2FA, admin actions)</li>
+        <li><strong>Session expiry handling</strong> — expired sessions auto-logout on both frontend and backend</li>
+        <li><strong>Refresh event tracking</strong> — frontend knows when tokens are refreshed or rejected</li>
+      </ul>
+
+      <h2>Code Quality</h2>
+      <ul>
+        <li><strong>0 TypeScript errors</strong> — every product compiles clean under strict mode</li>
+        <li><strong>0 Django check issues</strong> — no deprecation warnings, no misconfigured models</li>
+        <li><strong>No debug code</strong> — no <code>console.log</code>, no <code>print()</code>, no <code>window.confirm()</code> in shipped code</li>
+        <li><strong>No marketplace leaks</strong> — clean license, no third-party branding, no leaked credentials</li>
+      </ul>
+
+      <h2>What This Means for Buyers</h2>
+      <ul>
+        <li>A codebase reviewed as though an attacker was going to try it</li>
+        <li>Security defaults that are safe out of the box — no configuration needed to be protected</li>
+        <li>A stack that matches what you'd build if you had a security team</li>
+        <li>Documentation that tells you exactly which settings to flip in production</li>
+      </ul>
+
+      <h2>What I Do NOT Claim</h2>
+      <ul>
+        <li>That any software is "unhackable" — no software is</li>
+        <li>That I have a third-party audit certificate — I don't, and neither do most sellers on any marketplace</li>
+        <li>That I can protect you from infrastructure misconfigurations on your own server</li>
+        <li>That I take responsibility for third-party dependencies (Stripe, Cloudflare, etc.)</li>
+      </ul>
+      <p>What I do claim: <strong>the code is built and shipped with security as a first-class concern, not an afterthought.</strong></p>
+
+      <h2>Report a Security Issue</h2>
+      <p>If you find a vulnerability in any product, email <a href="mailto:business_obs@protonmail.com">business_obs@protonmail.com</a> with details. I respond within 48 hours, and responsible disclosures get priority fixes and public credit if you want it.</p>
+
+      <footer class="foot">
+        <div class="foot-links">
+          <a href="index.html">Home</a>
+          <a href="security.html">Security</a>
+          <a href="terms.html">Terms</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="refund.html">Refund</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="foot-copy">
+          <span>© 2026 Elijah O&#39;Brien</span>
+          <span>Built with care.</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

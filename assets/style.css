@@ -1,0 +1,153 @@
+/* Elijah O'Brien — Shared site styles */
+:root {
+  --page: #020617;
+  --card: #0b1220;
+  --border: #1e293b;
+  --body: #cbd5e1;
+  --muted: #94a3b8;
+  --accent: #818cf8;
+  --accent-strong: #6366f1;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--page);
+  color: var(--body);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--accent-strong); color: #fff; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 4rem 1.5rem 3rem; }
+.glow {
+  background: radial-gradient(ellipse 900px 500px at 50% -100px, rgba(99,102,241,0.18), transparent);
+  min-height: 100vh;
+}
+
+.top-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.25rem 1.5rem; max-width: 960px; margin: 0 auto;
+  border-bottom: 1px solid var(--border);
+}
+.top-nav .brand { color: #fff; font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; }
+.top-nav .links { display: flex; gap: 1.5rem; font-family: 'Monaco','Menlo','Ubuntu Mono',monospace; font-size: 0.85rem; }
+.top-nav .links a { color: var(--muted); transition: color 0.15s ease; }
+.top-nav .links a:hover { color: var(--accent); text-decoration: none; }
+
+h1 { color: #fff; font-size: 2.5rem; letter-spacing: -0.03em; margin: 0 0 0.5rem; line-height: 1.15; }
+h2 { color: #fff; font-size: 1.35rem; letter-spacing: -0.02em; margin: 2.5rem 0 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+h3 { color: #fff; font-size: 1.05rem; letter-spacing: -0.01em; margin: 1.75rem 0 0.5rem; }
+p, li { font-size: 1.02rem; line-height: 1.75; }
+ul, ol { padding-left: 1.5rem; }
+li { margin: 0.4rem 0; }
+
+code {
+  background: var(--card); border: 1px solid var(--border);
+  padding: 0.15rem 0.45rem; border-radius: 5px;
+  font-family: 'Monaco','Menlo','Ubuntu Mono',monospace;
+  font-size: 0.88em; color: var(--accent);
+}
+
+.meta { color: var(--muted); font-family: 'Monaco','Menlo','Ubuntu Mono',monospace; font-size: 0.85rem; margin-bottom: 2.5rem; }
+
+.note {
+  background: var(--card); border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px; padding: 1rem 1.25rem; margin: 1.5rem 0;
+  font-size: 0.95rem; color: var(--body);
+}
+.note strong { color: #fff; }
+
+/* Home page cards */
+.product-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 1.25rem;
+  transition: border-color 0.15s ease;
+}
+.product-card:hover { border-color: var(--accent); }
+.product-card.flagship { border: 2px solid var(--accent); box-shadow: 0 0 0 4px rgba(129,140,248,0.12); }
+.product-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+.product-title { color: #fff; font-size: 1.75rem; font-weight: 700; margin: 0; }
+.product-badge { font-family: 'Monaco','Menlo','Ubuntu Mono',monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; }
+.product-version { font-family: 'Monaco','Menlo','Ubuntu Mono',monospace; font-size: 0.8rem; color: var(--muted); }
+.product-desc { font-size: 1.05rem; color: var(--body); line-height: 1.7; margin: 0 0 1.25rem; }
+.product-tags { font-family: 'Monaco','Menlo','Ubuntu Mono',monospace; font-size: 0.82rem; color: var(--muted); }
+
+.hero-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border: 1px solid rgba(129,140,248,0.4);
+  background: rgba(129,140,248,0.05);
+  border-radius: 100px;
+  font-family: 'Monaco','Menlo','Ubuntu Mono',monospace;
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin-bottom: 2.5rem;
+}
+.hero-title { font-size: 4rem; font-weight: 800; letter-spacing: -0.04em; line-height: 0.95; margin: 0 0 2rem; color: #fff; }
+.hero-title .accent { color: var(--accent); }
+.hero-lead { font-size: 1.5rem; color: #fff; font-weight: 300; line-height: 1.35; margin: 0 0 1rem; }
+.hero-sub { font-size: 1.15rem; color: var(--body); margin: 0 0 2.5rem; max-width: 42rem; }
+.stack-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem; font-family: 'Monaco','Menlo','Ubuntu Mono',monospace; font-size: 0.9rem; }
+.chip { padding: 0.5rem 1rem; background: var(--card); border: 1px solid var(--border); border-radius: 8px; color: var(--body); }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }
+.btn {
+  padding: 1rem 1.75rem; border-radius: 12px;
+  font-size: 1rem; font-weight: 600;
+  transition: all 0.15s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+.btn-primary { background: var(--accent); color: var(--page); }
+.btn-primary:hover { background: #a5b4fc; text-decoration: none; }
+.btn-secondary { border: 1px solid var(--border); color: #fff; }
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+.section-label {
+  font-family: 'Monaco','Menlo','Ubuntu Mono',monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin: 0 0 2rem;
+}
+section { margin-bottom: 5rem; }
+
+.security-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.security-box { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
+.security-box .label { font-family: 'Monaco','Menlo','Ubuntu Mono',monospace; font-size: 0.75rem; color: var(--accent); margin-bottom: 0.5rem; letter-spacing: 0.1em; }
+.security-box .text { color: var(--body); font-size: 0.95rem; line-height: 1.5; }
+
+.contact-block { display: flex; gap: 2rem; font-family: 'Monaco','Menlo','Ubuntu Mono',monospace; font-size: 1rem; margin-bottom: 1rem; }
+.contact-block .label { color: var(--muted); min-width: 6rem; }
+.contact-block .value { color: var(--accent); }
+
+.foot {
+  margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border);
+  color: var(--muted); font-family: 'Monaco','Menlo','Ubuntu Mono',monospace; font-size: 0.82rem;
+}
+.foot-links { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 1.25rem; }
+.foot-links a { color: var(--muted); }
+.foot-links a:hover { color: var(--accent); text-decoration: none; }
+.foot-copy { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; }
+
+@media (max-width: 640px) {
+  .wrap { padding: 2.5rem 1.25rem 2rem; }
+  h1 { font-size: 2rem; }
+  .hero-title { font-size: 3rem; }
+  .hero-lead { font-size: 1.25rem; }
+  .hero-sub { font-size: 1.05rem; }
+  .top-nav { padding: 1rem 1.25rem; flex-wrap: wrap; gap: 0.75rem; }
+  .top-nav .links { gap: 1rem; font-size: 0.78rem; flex-wrap: wrap; }
+  .security-grid { grid-template-columns: 1fr; }
+  .product-title { font-size: 1.4rem; }
+}
